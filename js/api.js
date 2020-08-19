@@ -50,7 +50,7 @@ function getArticles() {
               }
               articlesHTML += `
               <tr>
-                <td>${team.position}</td>
+                <td class="posisi">${team.position}</td>
                 <td>
                   <ul style="margin:0">
                   <a href="./article.html?id=${team.team.id}">
@@ -61,13 +61,13 @@ function getArticles() {
                   </a>
                   </ul>
                 </td>
-                <td>${team.playedGames}</td>
+                <td class="pg">${team.playedGames}</td>
                 <td>${team.won}</td>
-                <td>${team.draw}</td>
+                <td >${team.draw}</td>
                 <td>${team.lost}</td>
-                <td>${team.goalDifference}</td>
-                <td>${team.goalsFor}</td>
-                <td>${team.goalsAgainst}</td>
+                <td class="gd">${team.goalDifference}</td>
+                <td class="gf">${team.goalsFor}</td>
+                <td class="ga">${team.goalsAgainst}</td>
                 <td>${team.points}</td>
               </tr>
             `;
@@ -104,13 +104,13 @@ function getArticles() {
             </a>
             </ul>
           </td>
-          <td>${team.playedGames}</td>
+          <td class="pg">${team.playedGames}</td>
           <td>${team.won}</td>
           <td>${team.draw}</td>
           <td>${team.lost}</td>
-          <td>${team.goalDifference}</td>
-          <td>${team.goalsFor}</td>
-          <td>${team.goalsAgainst}</td>
+          <td class="gd">${team.goalDifference}</td>
+          <td class="gf">${team.goalsFor}</td>
+          <td class="ga">${team.goalsAgainst}</td>
           <td>${team.points}</td>
         </tr>
         `;
