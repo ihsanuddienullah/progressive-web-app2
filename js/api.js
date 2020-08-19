@@ -68,7 +68,7 @@ function getArticles() {
                 <td class="gd">${team.goalDifference}</td>
                 <td class="gf">${team.goalsFor}</td>
                 <td class="ga">${team.goalsAgainst}</td>
-                <td>${team.points}</td>
+                <td class="points">${team.points}</td>
               </tr>
             `;
             });
@@ -111,7 +111,7 @@ function getArticles() {
           <td class="gd">${team.goalDifference}</td>
           <td class="gf">${team.goalsFor}</td>
           <td class="ga">${team.goalsAgainst}</td>
-          <td>${team.points}</td>
+          <td class="points">${team.points}</td>
         </tr>
         `;
       });

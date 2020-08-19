@@ -59,6 +59,10 @@ body {
     text-align: center;
 }
 
+.points {
+    font-weight: bolder;
+}
+
 #saved {
     margin-top: 20px;
 }
