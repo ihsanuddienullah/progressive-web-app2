@@ -1,0 +1,42 @@
+body {
+    background-image: url(../img/bg.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.intro h1 {
+    margin: 0 auto;
+}
+
+.brand-logo img {
+    width: 70px;
+    padding-top: 5px; 
+}
+
+.header {
+    background-color: rgba(34, 49, 52, 0); 
+    box-shadow: none; 
+}
+
+.waves-effect {
+    /* color: rgb(8, 54, 63); */
+    transition: all 0.5s;
+}
+
+.waves-effect:hover {
+    font-size: larger;
+}
+
+#home-page-table {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;    
+    width: 850px;
+    margin-top: 20px;
+}
+
+#home-page {
+    margin: 0 auto;
+    width: 800px;
+}
+
+

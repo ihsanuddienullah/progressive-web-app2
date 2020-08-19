@@ -11,6 +11,8 @@ var urlsToCache = [
   '/pages/home.html',
   '/pages/saved.html',
   '/css/materialize.min.css',
+  '/css/style.css',
+  '/img/logo.png',
   '/js/api.js',
   '/js/db.js',
   '/js/idb.js',
