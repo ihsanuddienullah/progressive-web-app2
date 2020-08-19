@@ -1,7 +1,13 @@
+@font-face {
+    font-family: radikal;
+    src: url(../font/radikal.woff);
+}
+
 body {
     background-image: url(../img/bg.jpg);
     background-size: cover;
     background-attachment: fixed;
+    font-family: radikal;
 }
 
 .intro h1 {
@@ -27,16 +33,45 @@ body {
     font-size: larger;
 }
 
-#home-page-table {
+.intro {
+    color: white;
+    text-align: center;
+}
+
+.intro img {
+    width: 500px;
+}
+
+#home-page {
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 10px;    
     width: 850px;
     margin-top: 20px;
 }
 
-#home-page {
+#home-page-table {
     margin: 0 auto;
     width: 800px;
 }
 
+#home-page-table th, td {
+    text-align: center;
+}
 
+#saved {
+    margin-top: 20px;
+}
+
+#saved .card {
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+#card-detail {
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+#card-detail li {
+    background-color: rgba(255, 255, 255, 0.3);
+}

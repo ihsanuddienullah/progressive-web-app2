@@ -213,7 +213,7 @@ function getArticleById() {
               </div>
             </div>
             <div class="col s12 m6">
-              <ul class="collection with-header">
+              <ul class="collection with-header"  id="card-detail">
                 <li class="collection-header"><h4>${data.name}</h4></li>
                 <li class="collection-item">
                   <div style="display:flex; align-items:center">
