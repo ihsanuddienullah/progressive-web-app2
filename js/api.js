@@ -33,27 +33,27 @@ function error(error) {
 }
 
 // Blok kode untuk melakukan request data json
-function getArticles() {
+function getClubs() {
   if ('caches' in window) {
     caches
       .match(base_url + 'competitions/2021/standings?standingType=TOTAL')
       .then(function (response) {
         if (response) {
           response.json().then(function (data) {
-            var articlesHTML = '';
+            let clubsHTML = '';
             data.standings[0].table.forEach(function (team) {
               let urlTeamImage = team.team.crestUrl;
-              if (urlTeamImage == null || urlTeamImage == '') {
+              if (urlTeamImage === null || urlTeamImage === '') {
                 urlTeamImage = 'https://via.placeholder.com/350';
               } else {
                 urlTeamImage = urlTeamImage.replace(/^http:\/\//i, 'https://');
               }
-              articlesHTML += `
+              clubsHTML += `
               <tr>
                 <td class="posisi">${team.position}</td>
                 <td>
                   <ul style="margin:0">
-                  <a href="./article.html?id=${team.team.id}">
+                  <a href="./club.html?id=${team.team.id}">
                     <li class="collection-item avatar" style="display:flex;align-items:center">
                       <img src="${urlTeamImage}" width="15px" alt="" class="circle"> &emsp;
                       <span class="title">${team.team.name}</span>
@@ -73,7 +73,7 @@ function getArticles() {
             `;
             });
             // Sisipkan komponen card ke dalam elemen dengan id #content
-            document.getElementById('articles').innerHTML = articlesHTML;
+            document.getElementById('clubs').innerHTML = clubsHTML;
           });
         }
       });
@@ -83,20 +83,20 @@ function getArticles() {
     .then(status)
     .then(json)
     .then(function (data) {
-      var articlesHTML = '';
+      let clubsHTML = '';
       data.standings[0].table.forEach(function (team) {
         let urlTeamImage = team.team.crestUrl;
-        if (urlTeamImage == null || urlTeamImage == '') {
+        if (urlTeamImage === null || urlTeamImage === '') {
           urlTeamImage = 'https://via.placeholder.com/350';
         } else {
           urlTeamImage = urlTeamImage.replace(/^http:\/\//i, 'https://');
         }
-        articlesHTML += `
+        clubsHTML += `
         <tr>
           <td>${team.position}</td>
           <td>
             <ul style="margin:0">
-            <a href="./article.html?id=${team.team.id}">
+            <a href="./club.html?id=${team.team.id}">
               <li class="collection-item avatar" style="display:flex;align-items:center">
                 <img src="${urlTeamImage}" width="15px" alt="" class="circle"> &emsp;
                 <span class="title">${team.team.name}</span>
@@ -116,28 +116,28 @@ function getArticles() {
         `;
       });
       // Sisipkan komponen card ke dalam elemen dengan id #content
-      document.getElementById('articles').innerHTML = articlesHTML;
+      document.getElementById('clubs').innerHTML = clubsHTML;
     })
     .catch(error);
 }
 
-function getArticleById() {
+function getClubById() {
   return new Promise(function (resolve, reject) {
     // Ambil nilai query parameter (?id=)
-    var urlParams = new URLSearchParams(window.location.search);
-    var idParam = urlParams.get('id');
+    let urlParams = new URLSearchParams(window.location.search);
+    let idParam = urlParams.get('id');
 
     if ('caches' in window) {
       caches.match(base_url + 'teams/' + idParam).then(function (response) {
         if (response) {
           response.json().then(function (data) {
             let urlTeamImage = data.crestUrl;
-            if (urlTeamImage == null || urlTeamImage == '') {
+            if (urlTeamImage === null || urlTeamImage === '') {
               urlTeamImage = 'https://via.placeholder.com/350';
             } else {
               urlTeamImage = urlTeamImage.replace(/^http:\/\//i, 'https://');
             }
-            var articleHTML = `
+            var clubHTML = `
             <div class="row" style="margin:30px;display:flex;justify-content:center;align-items:center;flex-wrap:wrap">
               <div class="col s12 m6">
                 <div style="justify-content: center;
@@ -184,7 +184,7 @@ function getArticleById() {
             </div>
           `;
             // Sisipkan komponen card ke dalam elemen dengan id #content
-            document.getElementById('body-content').innerHTML = articleHTML;
+            document.getElementById('body-content').innerHTML = clubHTML;
 
             // Kirim objek data hasil parsing json agar bisa disimpan ke indexed db
             resolve(data);
@@ -198,12 +198,12 @@ function getArticleById() {
       .then(json)
       .then(function (data) {
         let urlTeamImage = data.crestUrl;
-        if (urlTeamImage == null || urlTeamImage == '') {
+        if (urlTeamImage === null || urlTeamImage === '') {
           urlTeamImage = 'https://via.placeholder.com/350';
         } else {
           urlTeamImage = urlTeamImage.replace(/^http:\/\//i, 'https://');
         }
-        var articleHTML = `
+        let clubHTML = `
           <div class="row" style="margin:30px;display:flex;justify-content:center;align-items:center;flex-wrap:wrap">
             <div class="col s12 m6">
               <div style="justify-content: center;
@@ -250,27 +250,27 @@ function getArticleById() {
           </div>
         `;
         // Sisipkan komponen card ke dalam elemen dengan id #content
-        document.getElementById('body-content').innerHTML = articleHTML;
+        document.getElementById('body-content').innerHTML = clubHTML;
         // Kirim objek data hasil parsing json agar bisa disimpan ke indexed db
         resolve(data);
       });
   });
 }
 
-function getSavedArticles() {
+function getSavedClubs() {
   getAll().then(function (data) {
     // Menyusun komponen card artikel secara dinamis
-    var dataHTML = '';
+    let dataHTML = '';
     data.forEach(function (team) {
       let urlTeamImage = team.crestUrl;
-      if (urlTeamImage == null || urlTeamImage == '') {
+      if (urlTeamImage === null || urlTeamImage === '') {
         urlTeamImage = 'https://via.placeholder.com/350';
       } else {
         urlTeamImage = urlTeamImage.replace(/^http:\/\//i, 'https://');
       }
       dataHTML += `
         <div class="card col s12 m4 l3" style="width:200px; margin:10px;">
-          <a href="./article.html?id=${team.id}">
+          <a href="./club.html?id=${team.id}">
             <div class="card-image waves-effect waves-block waves-light">
               <img class="responsive-img" src="${urlTeamImage}" style="height:200px;"/>
             </div>
@@ -285,3 +285,4 @@ function getSavedArticles() {
     document.getElementById('saved').innerHTML = dataHTML;
   });
 }
+

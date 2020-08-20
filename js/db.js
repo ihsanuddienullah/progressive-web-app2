@@ -1,8 +1,8 @@
-var dbPromised = idb.open('liga-inggris', 1, function (upgradeDb) {
-  var articlesObjectStore = upgradeDb.createObjectStore('teams', {
+let dbPromised = idb.open('liga-inggris', 1, function (upgradeDb) {
+  let clubsObjectStore = upgradeDb.createObjectStore('teams', {
     keyPath: 'id',
   });
-  articlesObjectStore.createIndex('name', 'name', {
+  clubsObjectStore.createIndex('name', 'name', {
     unique: false,
   });
 });
@@ -10,14 +10,14 @@ var dbPromised = idb.open('liga-inggris', 1, function (upgradeDb) {
 function saveForLater(team) {
   dbPromised
     .then(function (db) {
-      var tx = db.transaction('teams', 'readwrite');
-      var store = tx.objectStore('teams');
+      let tx = db.transaction('teams', 'readwrite');
+      let store = tx.objectStore('teams');
       console.log(team);
       store.put(team);
       return tx.complete;
     })
     .then(function () {
-      console.log('Team berhasil di simpan.');
+      console.log('Team saved successfully.');
     });
 }
 
@@ -25,8 +25,8 @@ function getAll() {
   return new Promise(function (resolve, reject) {
     dbPromised
       .then(function (db) {
-        var tx = db.transaction('teams', 'readonly');
-        var store = tx.objectStore('teams');
+        let tx = db.transaction('teams', 'readonly');
+        let store = tx.objectStore('teams');
         return store.getAll();
       })
       .then(function (teams) {
@@ -40,13 +40,13 @@ function getById(id) {
   return new Promise(function (resolve, reject) {
     dbPromised
       .then(function (db) {
-        var tx = db.transaction('teams', 'readonly');
-        var store = tx.objectStore('teams');
+        let tx = db.transaction('teams', 'readonly');
+        let store = tx.objectStore('teams');
         return store.get(id);
       })
-      .then(function (article) {
-        console.log(article);
-        if (article !== undefined) {
+      .then(function (club) {
+        console.log(club);
+        if (club !== undefined) {
           resolve(true);
         } else {
           reject();
@@ -65,6 +65,6 @@ function deleteFavTeam(team) {
       return tx.complete;
     })
     .then(function () {
-      console.log('berhasil dihapus');
+      console.log('removed successfully');
     });
 }

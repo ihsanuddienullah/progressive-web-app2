@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Premier League</title>
+    <meta name="description" content="Premier League" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="img/logo.png" type="icon">
+    <link rel="apple-touch-icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/materialize.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#00897B" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+</head>
+<body>
+    <!-- Navigasi -->
+    <nav class="header" role="navigation">
+        <div class="nav-wrapper container">
+            <a href="./index.html" class="brand-logo" id="logo-container"><img src="img/logo.png" alt="premierleague-logo" srcset=""></a>
+            <a href="./index.html" class="sidenav-trigger" data-target="nav-mobile">
+                <i class="material-icons">arrow_back</i>
+            </a>
+            <ul class="topnav right hide-on-med-and-down"></ul>
+            <ul class="sidenav" id="nav-mobile"></ul>
+        </div>
+    </nav>
+    <!-- Akhir Navigasi -->
+
+    <div class="container" id="body-content"></div>
+
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red" id="save">
+            <i class="large material-icons">save</i>
+        </a>
+    </div>
+
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red darken-3" id="delete">
+            <i class="large material-icons">delete</i>
+        </a>
+    </div>
+
+    <script src="js/materialize.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/idb.js"></script>
+    <script src="js/db.js"></script>
+
+    <script>
+      // REGISTER SERVICE WORKER
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker
+                    .register('/service-worker.js')
+                    .then(function () {
+                        console.log('Pendaftaran ServiceWorker berhasil');
+                    })
+                    .catch(function () {
+                    console.log('Pendaftaran ServiceWorker gagal');
+                    });
+            });
+        } else {
+            console.log('ServiceWorker belum didukung browser ini.');
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            let urlParams = new URLSearchParams(window.location.search);
+            let idTeam = Number(urlParams.get('id'));
+
+            let save = document.getElementById('save');
+            let del = document.getElementById('delete');
+
+            let item = getClubById();
+
+            getById(idTeam)
+                .then((msg) => {
+                    console.log(msg);
+                    save.style.display = 'none';
+                    del.style.display = 'block';
+                })
+                .catch((msg) => {
+                    console.log(msg);
+                    save.style.display = 'block';
+                    del.style.display = 'none';
+                });
+
+                del.onclick = function () {
+                    console.log('Tombol delete di klik.');
+                    deleteFavTeam(idTeam);
+                    del.style.display = 'none';
+                    save.style.display = 'block';
+                };
+
+            save.onclick = function () {
+            console.log('Tombol FAB di klik.');
+            item.then(function (club) {
+                saveForLater(club);
+            });
+            save.style.display = 'none';
+            del.style.display = 'block';
+            };
+        });
+    </script>
+  </body>
+</html>

@@ -1,8 +1,7 @@
-const CACHE_NAME = 'firstpwa-v1';
-var urlsToCache = [
+const CACHE_NAME = 'premierleague-v1';
+const urlsToCache = [
   '/',
-  '/article.html',
-  '/icon.png',
+  '/club.html',
   '/index.html',
   '/manifest.json',
   '/nav.html',
@@ -12,10 +11,13 @@ var urlsToCache = [
   '/pages/saved.html',
   '/css/materialize.min.css',
   '/css/style.css',
-  '/img/logo.png',
-  '/img/bg.png',
-  '/img/intro.png',
   '/font/radikal.woff',
+  '/img/256.png',
+  '/img/384.png',
+  '/img/512.png',
+  '/img/bg.jpg',
+  '/img/intro.png',
+  '/img/logo.png',
   '/js/api.js',
   '/js/db.js',
   '/js/idb.js',
@@ -23,7 +25,9 @@ var urlsToCache = [
   '/js/nav.js',
   'https://fonts.googleapis.com/icon?family=Material+Icons',
   'https://fonts.gstatic.com/s/materialicons/v54/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2',
+  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
 ];
+
 
 self.addEventListener('install', function (event) {
   event.waitUntil(
@@ -34,7 +38,7 @@ self.addEventListener('install', function (event) {
 });
 
 self.addEventListener('fetch', function (event) {
-  var baseUrl = 'https://api.football-data.org/v2/';
+  let baseUrl = 'https://api.football-data.org/v2/';
   if (event.request.url.indexOf(baseUrl) > -1) {
     event.respondWith(
       caches.open(CACHE_NAME).then(function (cache) {
@@ -81,7 +85,7 @@ self.addEventListener('push', function (event) {
   }
   var options = {
     body: body,
-    icon: 'icon.png',
+    icon: 'img/logo.png',
     vibrate: [100, 50, 100],
     data: {
       dateOfArrival: Date.now(),
