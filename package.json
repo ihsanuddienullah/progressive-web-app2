@@ -1,0 +1,23 @@
+{
+  "name": "progressive-web-app2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "push.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ihsanuddienullah/progressive-web-app2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ihsanuddienullah/progressive-web-app2/issues"
+  },
+  "homepage": "https://github.com/ihsanuddienullah/progressive-web-app2#readme",
+  "devDependencies": {
+    "web-push": "^3.4.4"
+  }
+}
