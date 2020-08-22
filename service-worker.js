@@ -23,6 +23,7 @@ const urlsToCache = [
   '/js/idb.js',
   '/js/materialize.min.js',
   '/js/nav.js',
+  '/js/service-worker-register.js',
   'https://fonts.googleapis.com/icon?family=Material+Icons',
   'https://fonts.gstatic.com/s/materialicons/v54/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'

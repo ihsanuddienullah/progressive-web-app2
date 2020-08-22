@@ -137,7 +137,7 @@ function getClubById() {
             } else {
               urlTeamImage = urlTeamImage.replace(/^http:\/\//i, 'https://');
             }
-            var clubHTML = `
+            const clubHTML = `
             <div class="row" style="margin:30px;display:flex;justify-content:center;align-items:center;flex-wrap:wrap">
               <div class="col s12 m6">
                 <div style="justify-content: center;
