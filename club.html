@@ -26,9 +26,10 @@
         </div>
     </nav>
     <!-- Akhir Navigasi -->
-
-    <div class="container" id="body-content"></div>
-
+    <div class="content" style="display: none">
+        <div class="container" id="body-content"></div>
+    </div>
+    
     <div class="fixed-action-btn">
         <a class="btn-floating btn-large red" id="save">
             <i onclick="M.toast({html: 'Club Saved!'})" class="large material-icons">save</i>
@@ -41,12 +42,32 @@
         </a>
     </div>
 
+    <div class="preloader-wrapper big active" style="display: block; margin: 250px auto">
+        <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+
     <script src="js/materialize.min.js"></script>
     <script src="js/api.js"></script>
     <script src="js/idb.js"></script>
     <script src="js/db.js"></script>
 
     <script>
+        window.onload = function () {
+            setTimeout(function () {
+                document.querySelector(".content").style.display = "block";
+                document.querySelector(".preloader-wrapper").style.display = "none";
+            }, 2000);
+        };
       // REGISTER SERVICE WORKER
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function () {
@@ -100,5 +121,5 @@
             };
         });
     </script>
-  </body>
+</body>
 </html>
