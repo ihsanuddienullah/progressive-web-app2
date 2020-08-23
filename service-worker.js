@@ -88,10 +88,6 @@ else
     { url: '/index.html', revision: '1' },
     { url: '/nav.html', revision: '1' },
     { url: '/manifest.json', revision: '1' },
-    // { url: '/pages/about.html', revision: '1' },
-    // { url: '/pages/contact.html', revision: '1' },
-    // { url: '/pages/home.html', revision: '1' },
-    // { url: '/pages/saved.html', revision: '1' },
     { url: '/css/materialize.min.css', revision: '1' },
     { url: '/css/style.css', revision: '1' },
     { url: '/font/radikal.woff', revision: '1' },
@@ -113,8 +109,24 @@ else
 ]);
 
 workbox.routing.registerRoute(
+  new RegExp('https://api.football-data.org/v2'),
+  workbox.strategies.staleWhileRevalidate({
+    cacheName: 'api',
+  })
+);
+
+workbox.routing.registerRoute(
   new RegExp('/pages/'),
-  workbox.strategies.staleWhileRevalidate()
+    workbox.strategies.staleWhileRevalidate({
+        cacheName: 'pages'
+    })
+);
+
+workbox.routing.registerRoute(
+  new RegExp('/'),
+  workbox.strategies.staleWhileRevalidate({
+    cacheName: 'app',
+  })
 );
 
 self.addEventListener('push', function (event) {
