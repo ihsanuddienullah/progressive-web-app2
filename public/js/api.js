@@ -34,51 +34,6 @@ function error(error) {
 
 // Blok kode untuk melakukan request data json
 function getClubs() {
-  if ('caches' in window) {
-    caches
-      .match(base_url + 'competitions/2021/standings?standingType=TOTAL')
-      .then(function (response) {
-        if (response) {
-          response.json().then(function (data) {
-            let clubsHTML = '';
-            data.standings[0].table.forEach(function (team) {
-              let urlTeamImage = team.team.crestUrl;
-              if (urlTeamImage === null || urlTeamImage === '') {
-                urlTeamImage = 'https://via.placeholder.com/350';
-              } else {
-                urlTeamImage = urlTeamImage.replace(/^http:\/\//i, 'https://');
-              }
-              clubsHTML += `
-              <tr>
-                <td class="posisi">${team.position}</td>
-                <td>
-                  <ul style="margin:0">
-                  <a href="./club.html?id=${team.team.id}">
-                    <li class="collection-item avatar" style="display:flex;align-items:center">
-                      <img src="${urlTeamImage}" width="15px" alt="" class="circle"> &emsp;
-                      <span class="title">${team.team.name}</span>
-                    </li>
-                  </a>
-                  </ul>
-                </td>
-                <td class="pg">${team.playedGames}</td>
-                <td>${team.won}</td>
-                <td >${team.draw}</td>
-                <td>${team.lost}</td>
-                <td class="gd">${team.goalDifference}</td>
-                <td class="gf">${team.goalsFor}</td>
-                <td class="ga">${team.goalsAgainst}</td>
-                <td class="points">${team.points}</td>
-              </tr>
-            `;
-            });
-            // Sisipkan komponen card ke dalam elemen dengan id #content
-            document.getElementById('clubs').innerHTML = clubsHTML;
-          });
-        }
-      });
-  }
-
   fetchDataApi(base_url + 'competitions/2021/standings?standingType=TOTAL')
     .then(status)
     .then(json)
